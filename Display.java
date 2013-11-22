@@ -223,8 +223,11 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		int xCoordinate = (arg0.getX() - 25)/6;
 		int yCoordinate = (arg0.getY() - 40)/6;		
 		
-		if (cell[yCoordinate][xCoordinate].getAlive() == false) {
+		if (choose.buttonState == true) {
 			cell[yCoordinate][xCoordinate].setAlive(true);
+		}
+		else{
+			cell[yCoordinate][xCoordinate].setAlive(false);
 		}
 		
 	//	if (cell[yCoordinate][xCoordinate].
@@ -237,16 +240,21 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class ChooseButton extends JButton implements ActionListener {
+		public boolean buttonState;
+		
 		ChooseButton() {
 			super("Alive");
 			addActionListener(this);
+			buttonState = true;
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
 			if (this.getText().equals("Alive")) {
 				setText("Dead");
+				buttonState = false;
 			} else if (this.getText().equals("Dead")){
 				setText("Alive");
+				buttonState = true;
 			}
 			repaint();
 		}
