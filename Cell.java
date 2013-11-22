@@ -74,106 +74,156 @@ public class Cell {
 		int row = this.getY();
 		int col = this.getX();
 		
+		int x = col;
+		int y = row;
+		
 		boolean myLeftNeighborIsAlive = false;
 		
-		//What if col if zero?
-		
-		if (row - 1 > 0 && col - 1 > 0 && row + 1 < Display.ROWS && col + 1 < Display.COLS) {
-		Cell myLeftNeighbor = cell[row][col - 1];
-		Cell myRightNeighbor = cell[row][col + 1];
-		
-		Cell myTopNeighbor = cell[row + 1][col];
-		Cell myBottomNeighbor = cell[row - 1][col];
-		
-		Cell myTopRightNeighbor = cell[row + 1][col + 1];
-		Cell myBottomRightNeighbor = cell[row -1][col + 1];
-		
-		Cell myTopLeftNeighbor = cell[row + 1][col -1];
-		Cell myBottomLeftNeighbor = cell[row -1][col-1];
-		
-		if (row == 0) myTopNeighbor = cell[79][col];
-		if (row == 99) myBottomNeighbor = cell[0][col];
-		if (col == 0) myLeftNeighbor = cell[row][99];
-		if (col == 99) myRightNeighbor = cell[row][0];
-		
-		if (row == 0) myTopLeftNeighbor = cell[79][col-1];
-		if (row == 99) myBottomLeftNeighbor = cell[0][col-1];
-		if (row == 0) myTopRightNeighbor = cell[79][col+1];
-		if (row == 99) myBottomRightNeighbor = cell[0][col+1];
-		
-		if (col == 0) myTopLeftNeighbor = cell[row-1][99];
-		if (col == 99) myTopRightNeighbor = cell[row-1][0];
-		if (col == 0) myBottomLeftNeighbor = cell[row+1][99];
-		if (col == 99) myBottomRightNeighbor = cell[row+1][0];
+		//initializing neighbor cells
+		Cell myLeftNeighbor = cell[row][col];
+		Cell myRightNeighbor = cell[row][col];
+		Cell myTopNeighbor = cell[row][col];
+		Cell myBottomNeighbor = cell[row][col];
+		Cell myTopRightNeighbor = cell[row][col];
+		Cell myBottomRightNeighbor = cell[row][col];
+		Cell myTopLeftNeighbor = cell[row][col];
+		Cell myBottomLeftNeighbor = cell[row][col];
 		
 		
-		if (col == 0) myTopRightNeighbor = cell[row][99];
-		if (col == 99) myRightNeighbor = cell[row][0];
-
-/*
-		this code doesn't work because nothing has been written to do the diagonal cases
-		because of this, the code gets an error when it attempts to test the cases for the corners of the grid
-		if we can't find another simpler way to do it, this will work, but i'd rather have something else that is simpler if possible
-		*/
+		if (row > 0 && col > 0 && row < (Display.ROWS-1) && col < (Display.COLS-1)) {
+		myLeftNeighbor = cell[row][col - 1];
+		myRightNeighbor = cell[row][col + 1];
+		
+		myTopNeighbor = cell[row + 1][col];
+		myBottomNeighbor = cell[row - 1][col];
+		
+		myTopRightNeighbor = cell[row - 1][col + 1];
+		myBottomRightNeighbor = cell[row + 1][col + 1];
+		
+		myTopLeftNeighbor = cell[row - 1][col -1];
+		myBottomLeftNeighbor = cell[row + 1][col-1];
+		}
 
 
-/*
-		else if (col==0){
+//far left
+		else if (col==0 && row!=0 && row!=(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
-			myTopNeighbor = cell[row + 1][col];
-			myBottomNeighbor = cell[row - 1][col];
+			myTopNeighbor = cell[row-1][col];
+			myBottomNeighbor = cell[row + 1][col];
 			
-			myTopRightNeighbor = cell[row + 1][col + 1];
-			myBottomRightNeighbor = cell[row -1][col + 1];
+			myTopRightNeighbor = cell[row - 1][col + 1];
+			myBottomRightNeighbor = cell[row+1][col + 1];
 			
-			myTopLeftNeighbor = cell[row + 1][Display.COLS - 1];
-			myBottomLeftNeighbor = cell[row -1][Display.COLS - 1];
+			myTopLeftNeighbor = cell[row - 1][Display.COLS - 1];
+			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
 		}
-		else if (row==0){
+//far top
+		else if (row==0 && col!=0 && col!=(Display.COLS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
 			myTopNeighbor = cell[Display.ROWS-1][col];
-			myBottomNeighbor = cell[row - 1][col];
+			myBottomNeighbor = cell[row+1][col];
 			
 			myTopRightNeighbor = cell[Display.ROWS-1][col + 1];
-			myBottomRightNeighbor = cell[Display.ROWS-1][col + 1];
+			myBottomRightNeighbor = cell[row + 1][col + 1];
 			
-			myTopLeftNeighbor = cell[row + 1][col -1];
-			myBottomLeftNeighbor = cell[row -1][col-1];
+			myTopLeftNeighbor = cell[Display.ROWS-1][col-1];
+			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
-		else if (col==Display.COLS){
+//far right
+		else if (col==(Display.COLS-1) && row!=0 && row!=(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][0];
 			
-			myTopNeighbor = cell[row + 1][col];
-			myBottomNeighbor = cell[row - 1][col];
+			myTopNeighbor = cell[row - 1][col];
+			myBottomNeighbor = cell[row + 1][col];
 			
-			myTopRightNeighbor = cell[row + 1][0];
-			myBottomRightNeighbor = cell[row -1][0];
+			myTopRightNeighbor = cell[row - 1][0];
+			myBottomRightNeighbor = cell[row + 1][0];
 			
-			myTopLeftNeighbor = cell[row + 1][col -1];
-			myBottomLeftNeighbor = cell[row -1][col-1];
+			myTopLeftNeighbor = cell[row - 1][col -1];
+			myBottomLeftNeighbor = cell[row + 1][col-1];
 		}
-		else if (row==Display.ROWS){
+//far bottom
+		else if (row==(Display.ROWS-1) && col!=0 && col!=(Display.COLS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
-			myTopNeighbor = cell[row + 1][col];
+			myTopNeighbor = cell[row - 1][col];
 			myBottomNeighbor = cell[0][col];
 			
-			myTopRightNeighbor = cell[row + 1][col + 1];
+			myTopRightNeighbor = cell[row - 1][col + 1];
 			myBottomRightNeighbor = cell[0][col + 1];
 			
-			myTopLeftNeighbor = cell[row + 1][col -1];
+			myTopLeftNeighbor = cell[row - 1][col - 1];
+			myBottomLeftNeighbor = cell[0][col - 1];
+		}
+//top left
+		else if (col==0 && row==0){
+			myLeftNeighbor = cell[row][Display.COLS - 1];
+			myRightNeighbor = cell[row][col + 1];
+			
+			myTopNeighbor = cell[Display.ROWS-1][col];
+			myBottomNeighbor = cell[row + 1][col];
+			
+			myTopRightNeighbor = cell[Display.ROWS-1][col + 1];
+			myBottomRightNeighbor = cell[row+1][col+1];
+			
+			myTopLeftNeighbor = cell[Display.ROWS-1][Display.COLS - 1];
+			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
+		}
+//top right
+		else if (col==(Display.COLS-1) && row==0){
+			myLeftNeighbor = cell[row][col-1];
+			myRightNeighbor = cell[row][0];
+			
+			myTopNeighbor = cell[Display.ROWS-1][col];
+			myBottomNeighbor = cell[row + 1][col];
+			
+			myTopRightNeighbor = cell[Display.ROWS-1][0];
+			myBottomRightNeighbor = cell[row+1][0];
+			
+			myTopLeftNeighbor = cell[Display.ROWS-1][col-1];
+			myBottomLeftNeighbor = cell[row+1][col-1];
+		}
+//bottom left
+		else if (col==0 && row==(Display.ROWS-1)){
+			myLeftNeighbor = cell[row][Display.COLS - 1];
+			myRightNeighbor = cell[row][col + 1];
+			
+			myTopNeighbor = cell[row-1][col];
+			myBottomNeighbor = cell[0][col];
+			
+			myTopRightNeighbor = cell[row - 1][col + 1];
+			myBottomRightNeighbor = cell[0][col+1];
+			
+			myTopLeftNeighbor = cell[row-1][Display.COLS - 1];
+			myBottomLeftNeighbor = cell[0][Display.COLS - 1];
+		}
+//bottom right
+		else if (col==(Display.COLS-1) && row==(Display.ROWS-1)){
+			myLeftNeighbor = cell[row][col-1];
+			myRightNeighbor = cell[row][0];
+			
+			myTopNeighbor = cell[row-1][col];
+			myBottomNeighbor = cell[0][col];
+			
+			myTopRightNeighbor = cell[row - 1][0];
+			myBottomRightNeighbor = cell[0][0];
+			
+			myTopLeftNeighbor = cell[row-1][col-1];
 			myBottomLeftNeighbor = cell[0][col-1];
 		}
-		*/
+
+
+		
 
 		
 		//Now to count the number of cells that are alive.
+		myNeighbors = 0;
 		
 		if (myLeftNeighbor.getAlive()) {
 			myNeighbors++;
@@ -206,9 +256,8 @@ public class Cell {
 		if (myBottomLeftNeighbor.getAlive()) {
 			myNeighbors++;
 		}
-		}
-
 	}
+
 
 	public void willIBeAliveNextTurn() {
 		

@@ -52,7 +52,11 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		// Example of setting up a button.
 		// See the StartButton class nested below.
 		startStop = new StartButton();
+<<<<<<< HEAD
 		startStop.setBounds(100, 550, 100, 36); //sets the position of the Start button
+=======
+		startStop.setBounds(100, 550, 100, 36); //position of the start button
+>>>>>>> test-branch-code
 		add(startStop);
 		startStop.setVisible(true);
 		repaint();
@@ -80,7 +84,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void paintComponent(Graphics g) {
-		int TIME_BETWEEN_REPLOTS = 200; // change to your liking
+		int TIME_BETWEEN_REPLOTS = 100; // change to your liking
 
 		g.setColor(Color.BLACK);
 		drawGrid(g);
@@ -223,8 +227,11 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		int xCoordinate = (arg0.getX() - 25)/6;
 		int yCoordinate = (arg0.getY() - 40)/6;		
 		
-		if (cell[yCoordinate][xCoordinate].getAlive() == false) {
+		if (choose.buttonState == true) {
 			cell[yCoordinate][xCoordinate].setAlive(true);
+		}
+		else{
+			cell[yCoordinate][xCoordinate].setAlive(false);
 		}
 		
 	//	if (cell[yCoordinate][xCoordinate].
@@ -237,16 +244,21 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class ChooseButton extends JButton implements ActionListener {
+		public boolean buttonState;
+		
 		ChooseButton() {
 			super("Alive");
 			addActionListener(this);
+			buttonState = true;
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
 			if (this.getText().equals("Alive")) {
 				setText("Dead");
+				buttonState = false;
 			} else if (this.getText().equals("Dead")){
 				setText("Alive");
+				buttonState = true;
 			}
 			repaint();
 		}
