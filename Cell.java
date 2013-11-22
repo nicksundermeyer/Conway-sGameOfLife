@@ -235,10 +235,10 @@ public class Cell {
 			myBottomNeighbor = cell[row - 1][col];
 			
 			myTopRightNeighbor = cell[Display.ROWS-1][col + 1];
-			myBottomRightNeighbor = cell[Display.ROWS-1][Display.COLS-1];
+			myBottomRightNeighbor = cell[row+1][col+1];
 			
-			myTopLeftNeighbor = cell[row + 1][Display.COLS - 1];
-			myBottomLeftNeighbor = cell[row -1][Display.COLS - 1];
+			myTopLeftNeighbor = cell[Display.ROWS-1][Display.COLS - 1];
+			myBottomLeftNeighbor = cell[row-1][Display.COLS - 1];
 		}
 
 		
