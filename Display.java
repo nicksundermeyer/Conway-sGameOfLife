@@ -80,7 +80,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void paintComponent(Graphics g) {
-		int TIME_BETWEEN_REPLOTS = 1000; // change to your liking
+		int TIME_BETWEEN_REPLOTS = 200; // change to your liking
 
 		g.setColor(Color.BLACK);
 		drawGrid(g);
