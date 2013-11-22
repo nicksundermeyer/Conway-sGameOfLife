@@ -115,13 +115,13 @@ public class Cell {
 		
 		
 		//bottom left
-		
+		//if (row == 99 && col == 0) myLeftNeighbor = cell[row][Display.COLS]; myRightNeighbor = cell[row][];
 		
 		//bottom right
 		
 		
 		
-		
+		/*
 		if (row == 0) myTopLeftNeighbor = cell[79][col-1];
 		if (row == 99) myBottomLeftNeighbor = cell[0][col-1];
 		if (row == 0) myTopRightNeighbor = cell[79][col+1];
@@ -135,6 +135,7 @@ public class Cell {
 		
 		if (col == 0) myTopRightNeighbor = cell[row][99];
 		if (col == 99) myRightNeighbor = cell[row][0];
+		*/
 
 		/*
 		this code doesn't work because nothing has been written to do the diagonal cases
@@ -142,7 +143,7 @@ public class Cell {
 		if we can't find another simpler way to do it, this will work, but i'd rather have something else that is simpler if possible
 		*/
 
-/*
+
 //far left
 		else if (col==0){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
@@ -199,7 +200,22 @@ public class Cell {
 			myTopLeftNeighbor = cell[row + 1][col -1];
 			myBottomLeftNeighbor = cell[0][col-1];
 		}
-		*/
+//top left
+		else if (col==0 && row==0){
+			myLeftNeighbor = cell[row][Display.COLS - 1];
+			myRightNeighbor = cell[row][col + 1];
+			
+			myTopNeighbor = cell[Display.ROWS-1][col];
+			myBottomNeighbor = cell[row - 1][col];
+			
+			myTopRightNeighbor = cell[row + 1][col + 1];
+			myBottomRightNeighbor = cell[row -1][col + 1];
+			
+			myTopLeftNeighbor = cell[row + 1][Display.COLS - 1];
+			myBottomLeftNeighbor = cell[row -1][Display.COLS - 1];
+		}
+
+		
 
 		
 		//Now to count the number of cells that are alive.
