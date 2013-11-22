@@ -32,6 +32,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	private ClearButton clear;
 	private ChooseButton choose;
 	private ExitButton exit;
+	private PauseButton pause;
 	private boolean paintloop = false;
 
 
@@ -49,35 +50,33 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		addMouseListener(this);
 		addMouseMotionListener(this);
 
-		// Example of setting up a button.
-		// See the StartButton class nested below.
 		startStop = new StartButton();
-
-		startStop.setBounds(100, 550, 100, 36); //sets the position of the Start button
-
-		startStop.setBounds(100, 550, 100, 36); //position of the start button
-
+		startStop.setBounds(15, 550, 100, 36); //sets the position of the Start button
 		add(startStop);
 		startStop.setVisible(true);
-		repaint();
+		
+		pause = new PauseButton();
+		pause.setBounds(120, 550, 100, 36); //sets the position of the pause button
+		add(pause);
+		pause.setVisible(true);
 		
 		step = new StepButton();
-		step.setBounds(205, 550, 100, 36); //sets the position of the Step button
+		step.setBounds(225, 550, 100, 36); //sets the position of the Step button
 		add(step);
 		step.setVisible(true);
 		
 		clear = new ClearButton();
-		clear.setBounds(310, 550, 100, 36); //sets the position of the Clear button
+		clear.setBounds(330, 550, 100, 36); //sets the position of the Clear button
 		add(clear);
 		clear.setVisible(true);
 		
 		choose = new ChooseButton();
-		choose.setBounds(520, 550, 100, 36); //sets the position of the Choose button
+		choose.setBounds(540, 550, 100, 36); //sets the position of the Choose button
 		add(choose);
 		choose.setVisible(true);
 		
 		exit = new ExitButton();
-		exit.setBounds(415, 550, 100, 36); //sets the position of the Exit button
+		exit.setBounds(435, 550, 100, 36); //sets the position of the Exit button
 		add(exit);
 		exit.setVisible(true);
 	}
@@ -191,13 +190,13 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void mouseClicked(MouseEvent arg0) {
-		int xCoordinate = (arg0.getX() - 25)/6; //gets the col number of the cell clicked on
-		int yCoordinate = (arg0.getY() - 40)/6;	//gets the row number of the cell clicked on
+		int xCoordinate = (arg0.getX() - 25)/6;
+		int yCoordinate = (arg0.getY() - 40)/6;		
 		
-		if (cell[yCoordinate][xCoordinate].getAlive() == false) {
+		if (choose.buttonState == true) {
 			cell[yCoordinate][xCoordinate].setAlive(true);
 		}
-		else {
+		else{
 			cell[yCoordinate][xCoordinate].setAlive(false);
 		}
 	}
@@ -282,27 +281,6 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		}
 	}
 	
-	private class SpeedButton extends JButton implements ActionListener {
-		SpeedButton() {
-			super("Slow");
-			addActionListener(this);
-		}
-
-		public void actionPerformed(ActionEvent arg0) {
-			 nextGeneration(); // test the start button
-			if (this.getText().equals("Slow")) {
-				setText("Medium");
-			} else if (this.getText().equals("Medium")){
-
-				setText("Fast");
-			}
-			else if (this.getText().equals("Fast")) {
-				setText("Slow");
-			}
-			repaint();
-		}
-	}
-	
 	private class ExitButton extends JButton implements ActionListener {
 		ExitButton() {
 			super("Exit");
@@ -321,7 +299,6 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			nextGeneration();
 			
 			if (this.getText().equals("Step")) {
 				nextGeneration();
@@ -335,6 +312,8 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class StartButton extends JButton implements ActionListener {
+		public boolean stopped = true;
+		
 		StartButton() {
 			super("Start");
 			addActionListener(this);
@@ -342,16 +321,32 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 		public void actionPerformed(ActionEvent arg0) {
 			 nextGeneration(); // test the start button
-			if (this.getText().equals("Start")) {
+			if (stopped == true) {
+				stopped = false;
 				togglePaintLoop();
-				setText("Pause");
-			} else if (this.getText().equals("Pause")){
+				setText("Stop");
+			} else if (stopped == false){
+				stopped = true;
 				togglePaintLoop();
 				setText("Start");
 			}
 			repaint();
 		}
 	}
+	
+	private class PauseButton extends JButton implements ActionListener {
+		PauseButton() {
+			super("Pause");
+			addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			startStop.stopped = false;
+			paintloop = false;
+			repaint();
+		}
+	}
+	
 }
 
 

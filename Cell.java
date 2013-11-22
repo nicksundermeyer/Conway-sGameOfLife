@@ -67,19 +67,15 @@ public class Cell {
 	}
 
 	public void calcNeighbors(Cell[][] cell) {
-	/* The method calcNeighbors calculates the number of alive neighbors 
-	 * 
+	/*
+	 *  The method calcNeighbors calculates the number of alive neighbors 
 	 */
-		myNeighbors = 0;
-		int row = this.getY();
+		
+		myNeighbors = 0; //setting myNeighbors to 0 to initialize the neighbor count
+		int row = this.getY(); //getting x and y values of the cells to find the position of each cell
 		int col = this.getX();
 		
-		int x = col;
-		int y = row;
-		
-		boolean myLeftNeighborIsAlive = false;
-		
-		//initializing neighbor cells
+		//initializing neighbor cells around each cell
 		Cell myLeftNeighbor = cell[row][col];
 		Cell myRightNeighbor = cell[row][col];
 		Cell myTopNeighbor = cell[row][col];
@@ -89,7 +85,7 @@ public class Cell {
 		Cell myTopLeftNeighbor = cell[row][col];
 		Cell myBottomLeftNeighbor = cell[row][col];
 		
-		
+		//the basic neighbor settings, used for any cell not in the outer edges of the grid
 		if (row > 0 && col > 0 && row < (Display.ROWS-1) && col < (Display.COLS-1)) {
 		myLeftNeighbor = cell[row][col - 1];
 		myRightNeighbor = cell[row][col + 1];
@@ -111,7 +107,7 @@ public class Cell {
  */
 		
 
-//far left
+		//setting values of far left column, not including corners
 		else if (col==0 && row!=0 && row!=(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
 			myRightNeighbor = cell[row][col + 1];
@@ -125,7 +121,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[row - 1][Display.COLS - 1];
 			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
 		}
-//far top
+		//setting values for far top row, not including corners
 		else if (row==0 && col!=0 && col!=(Display.COLS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
@@ -139,7 +135,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[Display.ROWS-1][col-1];
 			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
-//far right
+		//setting values for far right column, not including corners
 		else if (col==(Display.COLS-1) && row!=0 && row!=(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][0];
@@ -153,7 +149,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[row - 1][col -1];
 			myBottomLeftNeighbor = cell[row + 1][col-1];
 		}
-//far bottom
+		//setting values for far bottom row, not including corners
 		else if (row==(Display.ROWS-1) && col!=0 && col!=(Display.COLS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
@@ -167,7 +163,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[row - 1][col - 1];
 			myBottomLeftNeighbor = cell[0][col - 1];
 		}
-//top left
+		//setting values for top left corner
 		else if (col==0 && row==0){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
 			myRightNeighbor = cell[row][col + 1];
@@ -181,7 +177,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[Display.ROWS-1][Display.COLS - 1];
 			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
 		}
-//top right
+		//setting values for top right corner
 		else if (col==(Display.COLS-1) && row==0){
 			myLeftNeighbor = cell[row][col-1];
 			myRightNeighbor = cell[row][0];
@@ -195,7 +191,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[Display.ROWS-1][col-1];
 			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
-//bottom left
+		//setting values for bottom left corner
 		else if (col==0 && row==(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
 			myRightNeighbor = cell[row][col + 1];
@@ -209,7 +205,7 @@ public class Cell {
 			myTopLeftNeighbor = cell[row-1][Display.COLS - 1];
 			myBottomLeftNeighbor = cell[0][Display.COLS - 1];
 		}
-//bottom right
+		//setting values for bottom right corner
 		else if (col==(Display.COLS-1) && row==(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][col-1];
 			myRightNeighbor = cell[row][0];
@@ -223,12 +219,8 @@ public class Cell {
 			myTopLeftNeighbor = cell[row-1][col-1];
 			myBottomLeftNeighbor = cell[0][col-1];
 		}
-
-
 		
-
-		
-		//Now to count the number of cells that are alive.
+		//now the code to count the number of neighbors each cell has, based on the neighbors found above
 		myNeighbors = 0;
 		
 		if (myLeftNeighbor.getAlive()) {
@@ -269,19 +261,22 @@ public class Cell {
 		
 		if (this.getAlive()) {
 			
-			/* with fewer than two live neighbors dies, as if caused by under-population
-			 * with two or three live neighbors lives on to the next generation.
-			 * with more than three live neighbors dies, as if by overcrowding
+			/* 
+			 * Rules:
+			 * 1. fewer than two live neighbors dies, as if caused by under-population
+			 * 2. with two or three live neighbors lives on to the next generation.
+			 * 3. with more than three live neighbors dies, as if by overcrowding
 			 */
 			
+			//1
 			if (this.getNeighbors() < 2) {
 				this.setAliveNextTurn(false);
 			}
-			
+			//2
 			if (this.getNeighbors() == 2 || this.getNeighbors() == 3) {
 				this.setAliveNextTurn(true);
 			}
-			
+			//3
 			if (this.getNeighbors() > 3) {
 				this.setAliveNextTurn(false);
 			}
@@ -304,7 +299,6 @@ public class Cell {
 
 	public void draw(int x_offset, int y_offset, int width, int height,
 			Graphics g) {
-		// I leave this understanding to the reader
 		int xleft = x_offset + 1 + (myX * (width + 1));
 		int xright = x_offset + width + (myX * (width + 1));
 		int ytop = y_offset + 1 + (myY * (height + 1));
