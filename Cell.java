@@ -127,47 +127,6 @@ public class Cell {
 		myTopLeftNeighbor = cell[row + 1][col -1];
 		myBottomLeftNeighbor = cell[row -1][col-1];
 		}
-		
-		//basic top/bottom/left/right
-		if (row == 0) myTopNeighbor = cell[79][col];
-		if (row == 99) myBottomNeighbor = cell[0][col];
-		if (col == 0) myLeftNeighbor = cell[row][99];
-		if (col == 99) myRightNeighbor = cell[row][0];
-		
-		//top left
-		
-		
-		//top right
-		
-		
-		//bottom left
-		//if (row == 99 && col == 0) myLeftNeighbor = cell[row][Display.COLS]; myRightNeighbor = cell[row][];
-		
-		//bottom right
-		
-		
-		
-		/*
-		if (row == 0) myTopLeftNeighbor = cell[79][col-1];
-		if (row == 99) myBottomLeftNeighbor = cell[0][col-1];
-		if (row == 0) myTopRightNeighbor = cell[79][col+1];
-		if (row == 99) myBottomRightNeighbor = cell[0][col+1];
-		
-		if (col == 0) myTopLeftNeighbor = cell[row-1][99];
-		if (col == 99) myTopRightNeighbor = cell[row-1][0];
-		if (col == 0) myBottomLeftNeighbor = cell[row+1][99];
-		if (col == 99) myBottomRightNeighbor = cell[row+1][0];
-		
-		
-		if (col == 0) myTopRightNeighbor = cell[row][99];
-		if (col == 99) myRightNeighbor = cell[row][0];
-		*/
-
-		/*
-		this code doesn't work because nothing has been written to do the diagonal cases
-		because of this, the code gets an error when it attempts to test the cases for the corners of the grid
-		if we can't find another simpler way to do it, this will work, but i'd rather have something else that is simpler if possible
-		*/
 
 
 //far left
