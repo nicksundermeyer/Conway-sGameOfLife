@@ -87,6 +87,32 @@ public class Cell {
 		Cell myBottomLeftNeighbor = cell[row][col];
 		
 		
+		if(x==0 && y!=0 && y!=79){
+			if(cell[y-1][x].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y-1][x+1].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y][x+1].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y+1][x].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y+1][x+1].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y-1][99].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y][99].getAlive()){
+				myNeighbors++;
+			}
+			if(cell[y+1][99].getAlive()){
+				myNeighbors++;
+			}
+		}
 		
 		if (row - 1 > 0 && col - 1 > 0 && row + 1 < Display.ROWS && col + 1 < Display.COLS) {
 		myLeftNeighbor = cell[row][col - 1];
