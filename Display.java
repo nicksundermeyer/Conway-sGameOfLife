@@ -52,11 +52,11 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		// Example of setting up a button.
 		// See the StartButton class nested below.
 		startStop = new StartButton();
-<<<<<<< HEAD
+
 		startStop.setBounds(100, 550, 100, 36); //sets the position of the Start button
-=======
+
 		startStop.setBounds(100, 550, 100, 36); //position of the start button
->>>>>>> test-branch-code
+
 		add(startStop);
 		startStop.setVisible(true);
 		repaint();
@@ -247,17 +247,17 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		public boolean buttonState;
 		
 		ChooseButton() {
-			super("Alive");
+			super("Live");
 			addActionListener(this);
 			buttonState = true;
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			if (this.getText().equals("Alive")) {
-				setText("Dead");
+			if (this.getText().equals("Live")) {
+				setText("Die");
 				buttonState = false;
-			} else if (this.getText().equals("Dead")){
-				setText("Alive");
+			} else if (this.getText().equals("Die")){
+				setText("Live");
 				buttonState = true;
 			}
 			repaint();
