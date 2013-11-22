@@ -90,52 +90,23 @@ public class Cell {
 		Cell myBottomLeftNeighbor = cell[row][col];
 		
 		
-		if(x==0 && y!=0 && y!=79){
-			if(cell[y-1][x].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y-1][x+1].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y][x+1].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y+1][x].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y+1][x+1].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y-1][99].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y][99].getAlive()){
-				myNeighbors++;
-			}
-			if(cell[y+1][99].getAlive()){
-				myNeighbors++;
-			}
-		}
-		
-		
-		
-		if (row - 1 > 0 && col - 1 > 0 && row + 1 < Display.ROWS && col + 1 < Display.COLS) {
+		if (row > 0 && col > 0 && row < (Display.ROWS-1) && col < (Display.COLS-1)) {
 		myLeftNeighbor = cell[row][col - 1];
 		myRightNeighbor = cell[row][col + 1];
 		
 		myTopNeighbor = cell[row + 1][col];
 		myBottomNeighbor = cell[row - 1][col];
 		
-		myTopRightNeighbor = cell[row + 1][col + 1];
-		myBottomRightNeighbor = cell[row -1][col + 1];
+		myTopRightNeighbor = cell[row - 1][col + 1];
+		myBottomRightNeighbor = cell[row + 1][col + 1];
 		
-		myTopLeftNeighbor = cell[row + 1][col -1];
-		myBottomLeftNeighbor = cell[row -1][col-1];
+		myTopLeftNeighbor = cell[row - 1][col -1];
+		myBottomLeftNeighbor = cell[row + 1][col-1];
 		}
 
 
 //far left
-		else if (col==0 && row!=0 && row!=Display.ROWS-1){
+		else if (col==0 && row!=0 && row!=(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
@@ -149,7 +120,7 @@ public class Cell {
 			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
 		}
 //far top
-		else if (row==0 && col!=0 && col!=Display.COLS-1){
+		else if (row==0 && col!=0 && col!=(Display.COLS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
@@ -157,27 +128,27 @@ public class Cell {
 			myBottomNeighbor = cell[row+1][col];
 			
 			myTopRightNeighbor = cell[Display.ROWS-1][col + 1];
-			myBottomRightNeighbor = cell[Display.ROWS-1][col + 1];
+			myBottomRightNeighbor = cell[row + 1][col + 1];
 			
 			myTopLeftNeighbor = cell[Display.ROWS-1][col-1];
 			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
 //far right
-		else if (col==Display.COLS-1 && row!=0 && row!=Display.ROWS-1){
+		else if (col==(Display.COLS-1) && row!=0 && row!=(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][0];
 			
-			myTopNeighbor = cell[row + 1][col];
-			myBottomNeighbor = cell[row - 1][col];
+			myTopNeighbor = cell[row - 1][col];
+			myBottomNeighbor = cell[row + 1][col];
 			
-			myTopRightNeighbor = cell[row + 1][0];
-			myBottomRightNeighbor = cell[row -1][0];
+			myTopRightNeighbor = cell[row - 1][0];
+			myBottomRightNeighbor = cell[row + 1][0];
 			
-			myTopLeftNeighbor = cell[row + 1][col -1];
-			myBottomLeftNeighbor = cell[row -1][col-1];
+			myTopLeftNeighbor = cell[row - 1][col -1];
+			myBottomLeftNeighbor = cell[row + 1][col-1];
 		}
 //far bottom
-		else if (row==Display.ROWS-1 && col!=0 && col!=Display.COLS-1){
+		else if (row==(Display.ROWS-1) && col!=0 && col!=(Display.COLS-1)){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
@@ -187,8 +158,8 @@ public class Cell {
 			myTopRightNeighbor = cell[row - 1][col + 1];
 			myBottomRightNeighbor = cell[0][col + 1];
 			
-			myTopLeftNeighbor = cell[row - 1][col -1];
-			myBottomLeftNeighbor = cell[0][col-1];
+			myTopLeftNeighbor = cell[row - 1][col - 1];
+			myBottomLeftNeighbor = cell[0][col - 1];
 		}
 //top left
 		else if (col==0 && row==0){
@@ -205,7 +176,7 @@ public class Cell {
 			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
 		}
 //top right
-		else if (col==Display.COLS-1 && row==0){
+		else if (col==(Display.COLS-1) && row==0){
 			myLeftNeighbor = cell[row][col-1];
 			myRightNeighbor = cell[row][0];
 			
@@ -219,7 +190,7 @@ public class Cell {
 			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
 //bottom left
-		else if (col==0 && row==Display.ROWS-1){
+		else if (col==0 && row==(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][Display.COLS - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
@@ -233,7 +204,7 @@ public class Cell {
 			myBottomLeftNeighbor = cell[0][Display.COLS - 1];
 		}
 //bottom right
-		else if (col==Display.COLS-1 && row==Display.ROWS-1){
+		else if (col==(Display.COLS-1) && row==(Display.ROWS-1)){
 			myLeftNeighbor = cell[row][col-1];
 			myRightNeighbor = cell[row][0];
 			
@@ -252,6 +223,7 @@ public class Cell {
 
 		
 		//Now to count the number of cells that are alive.
+		myNeighbors = 0;
 		
 		if (myLeftNeighbor.getAlive()) {
 			myNeighbors++;
@@ -284,7 +256,7 @@ public class Cell {
 		if (myBottomLeftNeighbor.getAlive()) {
 			myNeighbors++;
 		}
-		}
+	}
 
 
 	public void willIBeAliveNextTurn() {
