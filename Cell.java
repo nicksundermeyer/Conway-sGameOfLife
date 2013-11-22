@@ -74,6 +74,9 @@ public class Cell {
 		int row = this.getY();
 		int col = this.getX();
 		
+		int x = col;
+		int y = row;
+		
 		boolean myLeftNeighborIsAlive = false;
 		
 		//initializing neighbor cells
@@ -86,7 +89,7 @@ public class Cell {
 		Cell myTopLeftNeighbor = cell[row][col];
 		Cell myBottomLeftNeighbor = cell[row][col];
 		
-		/*
+		
 		if(x==0 && y!=0 && y!=79){
 			if(cell[y-1][x].getAlive()){
 				myNeighbors++;
@@ -113,7 +116,9 @@ public class Cell {
 				myNeighbors++;
 			}
 		}
-		*/
+		
+		
+		
 		if (row - 1 > 0 && col - 1 > 0 && row + 1 < Display.ROWS && col + 1 < Display.COLS) {
 		myLeftNeighbor = cell[row][col - 1];
 		myRightNeighbor = cell[row][col + 1];
@@ -137,10 +142,10 @@ public class Cell {
 			myTopNeighbor = cell[row-1][col];
 			myBottomNeighbor = cell[row + 1][col];
 			
-			myTopRightNeighbor = cell[row + 1][col + 1];
+			myTopRightNeighbor = cell[row - 1][col + 1];
 			myBottomRightNeighbor = cell[row+1][col + 1];
 			
-			myTopLeftNeighbor = cell[row + 1][Display.COLS - 1];
+			myTopLeftNeighbor = cell[row - 1][Display.COLS - 1];
 			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
 		}
 //far top
@@ -158,7 +163,7 @@ public class Cell {
 			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
 //far right
-		else if (col==Display.COLS && row!=0 && row!=Display.ROWS-1){
+		else if (col==Display.COLS-1 && row!=0 && row!=Display.ROWS-1){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][0];
 			
@@ -172,17 +177,17 @@ public class Cell {
 			myBottomLeftNeighbor = cell[row -1][col-1];
 		}
 //far bottom
-		else if (row==Display.ROWS && col!=0 && col!=Display.COLS-1){
+		else if (row==Display.ROWS-1 && col!=0 && col!=Display.COLS-1){
 			myLeftNeighbor = cell[row][col - 1];
 			myRightNeighbor = cell[row][col + 1];
 			
-			myTopNeighbor = cell[row + 1][col];
+			myTopNeighbor = cell[row - 1][col];
 			myBottomNeighbor = cell[0][col];
 			
-			myTopRightNeighbor = cell[row + 1][col + 1];
+			myTopRightNeighbor = cell[row - 1][col + 1];
 			myBottomRightNeighbor = cell[0][col + 1];
 			
-			myTopLeftNeighbor = cell[row + 1][col -1];
+			myTopLeftNeighbor = cell[row - 1][col -1];
 			myBottomLeftNeighbor = cell[0][col-1];
 		}
 //top left
