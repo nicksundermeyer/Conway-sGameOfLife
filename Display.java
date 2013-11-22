@@ -52,28 +52,28 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		// Example of setting up a button.
 		// See the StartButton class nested below.
 		startStop = new StartButton();
-		startStop.setBounds(100, 550, 100, 36);
+		startStop.setBounds(100, 550, 100, 36); //sets the position of the Start button
 		add(startStop);
 		startStop.setVisible(true);
 		repaint();
 		
 		step = new StepButton();
-		step.setBounds(205, 550, 100, 36);
+		step.setBounds(205, 550, 100, 36); //sets the position of the Step button
 		add(step);
 		step.setVisible(true);
 		
 		clear = new ClearButton();
-		clear.setBounds(310, 550, 100, 36);
+		clear.setBounds(310, 550, 100, 36); //sets the position of the Clear button
 		add(clear);
 		clear.setVisible(true);
 		
 		choose = new ChooseButton();
-		choose.setBounds(520, 550, 100, 36);
+		choose.setBounds(520, 550, 100, 36); //sets the position of the Choose button
 		add(choose);
 		choose.setVisible(true);
 		
 		exit = new ExitButton();
-		exit.setBounds(415, 550, 100, 36);
+		exit.setBounds(415, 550, 100, 36); //sets the position of the Exit button
 		add(exit);
 		exit.setVisible(true);
 	}
@@ -187,8 +187,8 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void mouseClicked(MouseEvent arg0) {
-		int xCoordinate = (arg0.getX() - 25)/6;
-		int yCoordinate = (arg0.getY() - 40)/6;		
+		int xCoordinate = (arg0.getX() - 25)/6; //gets the col number of the cell clicked on
+		int yCoordinate = (arg0.getY() - 40)/6;	//gets the row number of the cell clicked on
 		
 		if (cell[yCoordinate][xCoordinate].getAlive() == false) {
 			cell[yCoordinate][xCoordinate].setAlive(true);
