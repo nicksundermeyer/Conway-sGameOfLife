@@ -234,8 +234,8 @@ public class Cell {
 			myTopNeighbor = cell[Display.ROWS-1][col];
 			myBottomNeighbor = cell[row - 1][col];
 			
-			myTopRightNeighbor = cell[row + 1][col + 1];
-			myBottomRightNeighbor = cell[row -1][col + 1];
+			myTopRightNeighbor = cell[Display.ROWS-1][col + 1];
+			myBottomRightNeighbor = cell[Display.ROWS-1][Display.COLS-1];
 			
 			myTopLeftNeighbor = cell[row + 1][Display.COLS - 1];
 			myBottomLeftNeighbor = cell[row -1][Display.COLS - 1];
