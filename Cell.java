@@ -232,13 +232,27 @@ public class Cell {
 			myRightNeighbor = cell[row][col + 1];
 			
 			myTopNeighbor = cell[Display.ROWS-1][col];
-			myBottomNeighbor = cell[row - 1][col];
+			myBottomNeighbor = cell[row + 1][col];
 			
 			myTopRightNeighbor = cell[Display.ROWS-1][col + 1];
 			myBottomRightNeighbor = cell[row+1][col+1];
 			
 			myTopLeftNeighbor = cell[Display.ROWS-1][Display.COLS - 1];
-			myBottomLeftNeighbor = cell[row-1][Display.COLS - 1];
+			myBottomLeftNeighbor = cell[row+1][Display.COLS - 1];
+		}
+//top right
+		else if (col==Display.COLS-1 && row==0){
+			myLeftNeighbor = cell[row][col-1];
+			myRightNeighbor = cell[row][0];
+			
+			myTopNeighbor = cell[Display.ROWS-1][col];
+			myBottomNeighbor = cell[row + 1][col];
+			
+			myTopRightNeighbor = cell[Display.ROWS-1][Display.COLS-1];
+			myBottomRightNeighbor = cell[row+1][0];
+			
+			myTopLeftNeighbor = cell[Display.ROWS-1][col-1];
+			myBottomLeftNeighbor = cell[row+1][col-1];
 		}
 
 		
