@@ -187,9 +187,15 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void mouseClicked(MouseEvent arg0) {
+		int xCoordinate = (arg0.getX() - 25)/6;
+		int yCoordinate = (arg0.getY() - 40)/6;		
 		
-		
-		
+		if (cell[yCoordinate][xCoordinate].getAlive() == false) {
+			cell[yCoordinate][xCoordinate].setAlive(true);
+		}
+		else {
+			cell[yCoordinate][xCoordinate].setAlive(false);
+		}
 	}
 
 
@@ -292,15 +298,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			 nextGeneration(); // test the start button
-			if (this.getText().equals("Exit")) {
-				togglePaintLoop();
-				setText("Exit");
-			} else if (this.getText().equals("Exit")){
-				togglePaintLoop();
-				setText("Exit");
-			}
-			repaint();
+			System.exit(0);
 		}
 	}
 	
