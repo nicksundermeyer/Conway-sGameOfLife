@@ -104,6 +104,12 @@ public class Cell {
 		myBottomLeftNeighbor = cell[row + 1][col-1];
 		}
 
+/*
+ * this is going about it the "brute force way", looking through every single condition and changing values
+ * if we were to continue editing this code, we would find a way to simply make it so that when you reached the end of a row/column
+ * it simply looped back to the beginning of that row/column	
+ */
+		
 
 //far left
 		else if (col==0 && row!=0 && row!=(Display.ROWS-1)){
