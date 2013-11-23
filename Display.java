@@ -165,15 +165,15 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
-				cell[row][col].calcNeighbors(cell);
-				cell[row][col].willIBeAliveNextTurn();
+				cell[row][col].calcNeighbors(cell); //invokes calcNeighbors to find the number of neighbors each cell has
+				cell[row][col].willIBeAliveNextTurn(); //checks the rules based on the number of neighbors
 			}
 		}
 	
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
-			boolean resultOfWillIBeAlive = cell[row][col].getAliveNextTurn();
-				cell[row][col].setAlive(resultOfWillIBeAlive); //Sets cell alive.
+			boolean resultOfWillIBeAlive = cell[row][col].getAliveNextTurn(); //returns whether it is alive next turn or not
+				cell[row][col].setAlive(resultOfWillIBeAlive); //Sets cell alive or dead
 			}
 		}
 	}
