@@ -16,8 +16,8 @@ import javax.swing.JComponent;
 
 
 public class Display extends JComponent implements MouseListener, MouseMotionListener {
-	public static final int ROWS = 80;
-	public static final int COLS = 100;
+	public static final int ROWS = 80; //There are 80 rows
+	public static final int COLS = 100; //There are 100 columns
 	public static Cell[][] cell = new Cell[ROWS][COLS];
 	private final int X_GRID_OFFSET = 25; // 25 pixels from left
 	private final int Y_GRID_OFFSET = 40; // 40 pixels from top
@@ -83,7 +83,8 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void paintComponent(Graphics g) {
-		int TIME_BETWEEN_REPLOTS = 100; // change to your liking
+		int TIME_BETWEEN_REPLOTS = 100; // This is the time between
+		//each generatoin.
 
 		g.setColor(Color.BLACK);
 		drawGrid(g);
@@ -159,17 +160,20 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	private void nextGeneration() {
+	//This method utilizes the calcNeighbors and willIBeAliveNextTurn
+	//methods to actually change what is displayed on the screen.
+	
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
 				cell[row][col].calcNeighbors(cell);
 				cell[row][col].willIBeAliveNextTurn();
 			}
 		}
-		
+	
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLS; col++) {
 			boolean resultOfWillIBeAlive = cell[row][col].getAliveNextTurn();
-				cell[row][col].setAlive(resultOfWillIBeAlive);
+				cell[row][col].setAlive(resultOfWillIBeAlive); //Sets cell alive.
 			}
 		}
 	}
