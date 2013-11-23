@@ -110,20 +110,6 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 				cell[row][col] = new Cell(row, col);
 			}
 		}
-		
-		cell[36][22].setAlive(true); // sample use of cell mutator method
-		cell[36][23].setAlive(true); // sample use of cell mutator method
-		cell[36][24].setAlive(true); // sample use of cell mutator method
-		cell[25][25].setAlive(true); 
-		cell[26][25].setAlive(true);
-		cell[37][25].setAlive(true);
-		cell[42][25].setAlive(true);
-		cell[41][26].setAlive(true);
-		cell[45][24].setAlive(true);
-		cell[56][24].setAlive(true);
-		cell[44][25].setAlive(true);
-		
-		
 	}
 
 	
