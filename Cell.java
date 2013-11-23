@@ -85,17 +85,17 @@ public class Cell {
 		
 		//the basic neighbor settings, used for any cell not in the outer edges of the grid
 		if (row > 0 && col > 0 && row < (Display.ROWS-1) && col < (Display.COLS-1)) {
-		myLeftNeighbor = cell[row][col - 1];
-		myRightNeighbor = cell[row][col + 1];
+		myLeftNeighbor = cell[row][col - 1]; //defines the left neighbor
+		myRightNeighbor = cell[row][col + 1]; //defines the left neighbor
 		
-		myTopNeighbor = cell[row + 1][col];
-		myBottomNeighbor = cell[row - 1][col];
+		myTopNeighbor = cell[row + 1][col]; //defines the top neighbor
+		myBottomNeighbor = cell[row - 1][col]; //defines the left neighbor
 		
-		myTopRightNeighbor = cell[row - 1][col + 1];
-		myBottomRightNeighbor = cell[row + 1][col + 1];
+		myTopRightNeighbor = cell[row - 1][col + 1]; //defines the top right neighbor
+		myBottomRightNeighbor = cell[row + 1][col + 1]; //defines the bottom right neighbor
 		
-		myTopLeftNeighbor = cell[row - 1][col -1];
-		myBottomLeftNeighbor = cell[row + 1][col-1];
+		myTopLeftNeighbor = cell[row - 1][col -1]; //defines the top left neighbor
+		myBottomLeftNeighbor = cell[row + 1][col-1]; //defines the bottom left neighbor
 		}
 
 /*
@@ -221,60 +221,71 @@ public class Cell {
 		//now the code to count the number of neighbors each cell has, based on the neighbors found above
 		myNeighbors = 0;
 		
+		//myNeighbors stores the number of alive neighbors there are
 		if (myLeftNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive left neighbors to the total tally
 		}
 		
 		if (myRightNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive right neighbors to the total tally
 		}
 		
 		if (myTopNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive top neighbors to the total tally
 		}
 		
 		if (myBottomNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive bottom neighbors to the total tally
 		}
 		
 		if (myTopRightNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive top right neighbors to the total tally
 		}
 		
 		if (myBottomRightNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive bottom right neighbors to the total tally
 		}
 		
 		if (myTopLeftNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive top left neighbors to the total tally
 		}
 		
 		if (myBottomLeftNeighbor.getAlive()) {
 			myNeighbors++;
+		//adds alive bottom left neighbors to the total tally
 		}
 	}
 
 
 	public void willIBeAliveNextTurn() {
-		
-		if (this.getAlive()) {
+	//This is the method that basically determines if a cell will be alive
+	//the next turn based on the number of alive neighbors it has.
+	
+	 	if (this.getAlive()) {
 			
-			/* 
+			/* HERE ARE THE RULES
 			 * Rules:
-			 * 1. fewer than two live neighbors dies, as if caused by under-population
-			 * 2. with two or three live neighbors lives on to the next generation.
-			 * 3. with more than three live neighbors dies, as if by overcrowding
+			 * Rule 1. fewer than two live neighbors dies, as if caused by under-population
+			 * Rule 2. with two or three live neighbors lives on to the next generation.
+			 * Rule 3. with more than three live neighbors dies, as if by overcrowding
 			 */
 			
-			//1
+			//Rule 1
 			if (this.getNeighbors() < 2) {
 				this.setAliveNextTurn(false);
 			}
-			//2
+			//Rule 2
 			if (this.getNeighbors() == 2 || this.getNeighbors() == 3) {
 				this.setAliveNextTurn(true);
 			}
-			//3
+			//Rule 3
 			if (this.getNeighbors() > 3) {
 				this.setAliveNextTurn(false);
 			}
