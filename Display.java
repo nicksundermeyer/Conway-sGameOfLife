@@ -312,7 +312,6 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class StartButton extends JButton implements ActionListener {
-		public boolean stopped = true;
 		
 		StartButton() {
 			super("Start");
@@ -320,13 +319,10 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			 nextGeneration(); // test the start button
-			if (stopped == true) {
-				stopped = false;
+			if (this.getText().equals("Start")) {
 				togglePaintLoop();
 				setText("Stop");
-			} else if (stopped == false){
-				stopped = true;
+			} else if (this.getText().equals("Stop")){
 				togglePaintLoop();
 				setText("Start");
 			}
@@ -341,12 +337,11 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			startStop.stopped = false;
+			startStop.setText("Start");
 			paintloop = false;
 			repaint();
 		}
 	}
-	
 }
 
 
