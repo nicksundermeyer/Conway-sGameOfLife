@@ -176,10 +176,17 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void mouseClicked(MouseEvent arg0) {
-		int xCoordinate = (arg0.getX() - 25)/6;
-		int yCoordinate = (arg0.getY() - 40)/6;		
+	//This is the method that controls what the mouse does
+	//when it clicks on a certain cell. 
+		int xCoordinate = (arg0.getX() - 25)/6; //Subtract 25 because columns are
+		//offset by 25. Divide by 6 because each cell is 6 units 
 		
-		if (choose.buttonState == true) {
+		int yCoordinate = (arg0.getY() - 40)/6;	//Subtract 40 because the rows are
+		//offset by 40. Divide by 6 because each cell is 6 units
+		
+		if (choose.buttonState == true) {//If statement also looks at whether
+		//the choose button is set to alive or dead. Based on that, it will
+		//either kill of make cells alive when clicking. 
 			cell[yCoordinate][xCoordinate].setAlive(true);
 		}
 		else{
@@ -189,46 +196,50 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 
 
 	public void mouseEntered(MouseEvent arg0) {
-	
+	//These do nothing
 	}
 
 
 	public void mouseExited(MouseEvent arg0) {
-
+	//These do nothing
 	}
 
 
 	public void mousePressed(MouseEvent arg0) {
-		
+	//These do nothing	
 	}
 
 
 	public void mouseReleased(MouseEvent arg0) {
-		
+	//These do nothing	
 	}
 
 
 	public void mouseDragged(MouseEvent arg0) {
-		int xCoordinate = (arg0.getX() - 25)/6;
-		int yCoordinate = (arg0.getY() - 40)/6;		
+		int xCoordinate = (arg0.getX() - 25)/6; //Subtract 25 because columns are
+		//offset by 25. Divide by 6 because each cell is 6 units 
 		
-		if (choose.buttonState == true) {
+		int yCoordinate = (arg0.getY() - 40)/6;	//Subtract 40 because the rows are
+		//offset by 40. Divide by 6 because each cell is 6 units	
+		
+		if (choose.buttonState == true) { //If statement also looks at whether
+		//the choose button is set to alive or dead. Based on that, it will
+		//either kill of make cells alive when dragging.
 			cell[yCoordinate][xCoordinate].setAlive(true);
 		}
 		else{
 			cell[yCoordinate][xCoordinate].setAlive(false);
 		}
-		
-	//	if (cell[yCoordinate][xCoordinate].
 	
 	}
 
 
 	public void mouseMoved(MouseEvent arg0) {
-		//DOES NOTHING
+		//These do nothing
 	}
 	
 	private class ChooseButton extends JButton implements ActionListener {
+	//This is for the Choose Button.
 		public boolean buttonState;
 		
 		ChooseButton() {
@@ -250,13 +261,13 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class ClearButton extends JButton implements ActionListener {
+	//This is for the clear button
 		ClearButton() {
 			super("Clear");
 			addActionListener(this);
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			// nextGeneration(); // test the clear button
 			for (int row = 0; row < ROWS; row++) {
 				for (int col = 0; col < COLS; col++) {
 					cell[row][col].setAlive(false);
@@ -268,6 +279,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class ExitButton extends JButton implements ActionListener {
+	//This is for the exit button.
 		ExitButton() {
 			super("Exit");
 			addActionListener(this);
@@ -279,6 +291,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class StepButton extends JButton implements ActionListener {
+	//This is the step button
 		StepButton() {
 			super("Step");
 			addActionListener(this);
@@ -298,7 +311,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class StartButton extends JButton implements ActionListener {
-		
+	//This is the start button
 		StartButton() {
 			super("Start");
 			addActionListener(this);
@@ -317,6 +330,7 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 	}
 	
 	private class PauseButton extends JButton implements ActionListener {
+	//This is for the pause button
 		PauseButton() {
 			super("Pause");
 			addActionListener(this);
