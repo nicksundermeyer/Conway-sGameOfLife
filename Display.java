@@ -255,10 +255,10 @@ public class Display extends JComponent implements MouseListener, MouseMotionLis
 		public void actionPerformed(ActionEvent arg0) {
 			if (this.getText().equals("Live")) {
 				setText("Die");
-				buttonState = false;
+				buttonState = false; //this goes back to the mouse methods
 			} else if (this.getText().equals("Die")){
 				setText("Live");
-				buttonState = true;
+				buttonState = true; //this goes back to the mouse methods
 			}
 			repaint();
 		}
