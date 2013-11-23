@@ -65,25 +65,23 @@ public class Cell {
 	public int getNeighbors() {
 		return myNeighbors;
 	}
-
+	
 	public void calcNeighbors(Cell[][] cell) {
-	/*
-	 *  The method calcNeighbors calculates the number of alive neighbors 
-	 */
+	// The method calcNeighbors calculates the number of alive neighbors. 
 		
 		myNeighbors = 0; //setting myNeighbors to 0 to initialize the neighbor count
 		int row = this.getY(); //getting x and y values of the cells to find the position of each cell
 		int col = this.getX();
 		
 		//initializing neighbor cells around each cell
-		Cell myLeftNeighbor = cell[row][col];
-		Cell myRightNeighbor = cell[row][col];
-		Cell myTopNeighbor = cell[row][col];
-		Cell myBottomNeighbor = cell[row][col];
-		Cell myTopRightNeighbor = cell[row][col];
-		Cell myBottomRightNeighbor = cell[row][col];
-		Cell myTopLeftNeighbor = cell[row][col];
-		Cell myBottomLeftNeighbor = cell[row][col];
+		Cell myLeftNeighbor = cell[row][col]; //the left neighbor
+		Cell myRightNeighbor = cell[row][col]; //the right neighbor
+		Cell myTopNeighbor = cell[row][col]; // the top neighbor
+		Cell myBottomNeighbor = cell[row][col]; //the bottom neighbor
+		Cell myTopRightNeighbor = cell[row][col]; //the top right neighbor
+		Cell myBottomRightNeighbor = cell[row][col]; //the bottom right neighbor
+		Cell myTopLeftNeighbor = cell[row][col]; //the top left neighbor
+		Cell myBottomLeftNeighbor = cell[row][col]; // the bottom left neighbor
 		
 		//the basic neighbor settings, used for any cell not in the outer edges of the grid
 		if (row > 0 && col > 0 && row < (Display.ROWS-1) && col < (Display.COLS-1)) {
